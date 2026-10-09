@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-salita: oklch(0.63 0.17 150);
+  --color-discesa: oklch(0.62 0.21 25);
+}
+
+/* L'app ha un solo tema: dichiararne due farebbe rendere i controlli
+   nativi (select, date) in scuro su superfici chiare. */
+html {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+/* Nasconde le frecce dagli input numerici: nei form finanziari si digita. */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}

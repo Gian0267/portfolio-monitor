@@ -1,0 +1,4 @@
+Ticker;Nome;Categoria;Operazione;Data;Quantità;Prezzo;Commissioni;Valuta;Note
+TTE.PA;TotalEnergies SE;AZIONE;Acquisto;15/03/2025;30;58,42;5,00;EUR;Esempio con separatore punto e virgola
+TTE.PA;TotalEnergies SE;AZIONE;Dividendo;26/06/2025;30;0,79;0;EUR;Importi con virgola decimale
+ISP.MI;Intesa Sanpaolo S.p.A.;AZIONE;Acquisto;07/11/2023;1.500;2,52;5,00;EUR;Migliaia con il punto
