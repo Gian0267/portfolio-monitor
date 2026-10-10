@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -7,13 +7,34 @@ const qui = path.dirname(fileURLToPath(import.meta.url));
 /** Root del monorepo: funziona sia da src/ (tsx) sia da dist/ (build). */
 export const ROOT = path.resolve(qui, '..', '..');
 
+/**
+ * Il .env va cercato per percorso assoluto, non con `import 'dotenv/config'`:
+ * quello legge dalla cartella di lavoro, che con `npm run dev --workspace`
+ * e' `backend/`, e il file nella radice resterebbe ignorato.
+ * `backend/.env`, se presente, ha la precedenza (comodo per sviluppo).
+ */
+for (const file of [path.join(ROOT, 'backend', '.env'), path.join(ROOT, '.env')]) {
+  if (fs.existsSync(file)) dotenv.config({ path: file });
+}
+
 function env(chiave: string, fallback = ''): string {
   const v = process.env[chiave];
   return v === undefined || v === '' ? fallback : v;
 }
 
-function envNum(chiave: string, fallback: number): number {
-  const n = Number(env(chiave, ''));
+/**
+ * Variabile d'ambiente numerica.
+ *
+ * Attenzione a `Number('')`, che vale 0 ed e' finito: passarlo direttamente a
+ * `Number.isFinite` farebbe sembrare valido un valore assente e il default non
+ * scatterebbe mai. Con BACKEND_PORT questo significava partire sulla porta 0,
+ * cioe' una porta casuale, irraggiungibile da chi si aspetta la 4000.
+ */
+export function envNum(chiave: string, fallback: number): number {
+  // Il trim non e' cosmetico: anche Number('   ') vale 0.
+  const grezzo = env(chiave, '').trim();
+  if (grezzo === '') return fallback;
+  const n = Number(grezzo);
   return Number.isFinite(n) ? n : fallback;
 }
 

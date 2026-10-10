@@ -52,7 +52,13 @@ async function chiama<T>(percorso: string, opzioni: RequestInit = {}): Promise<T
           .join(', ')}`;
       }
     } catch {
-      messaggio = `${messaggio} ${risposta.statusText}`.trim();
+      // Corpo non JSON: di solito non e' l'app a rispondere ma il proxy o il
+      // sistema, perche' il server e' spento. Diciamolo invece di mostrare
+      // un codice di stato nudo.
+      messaggio =
+        risposta.status >= 500
+          ? "Il server dell'app non risponde. Controlla che la finestra di avvio sia ancora aperta, poi riprova."
+          : `${messaggio} ${risposta.statusText}`.trim();
     }
     throw new ErroreApi(risposta.status, messaggio, dettagli);
   }
