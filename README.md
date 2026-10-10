@@ -55,8 +55,34 @@ quello che serve (qualche minuto), poi il browser si apre su **http://localhost:
 
 Dalla seconda volta in poi è solo doppio clic e via. Per spegnere l'app, chiudi quella finestra.
 
-> **Mac, primo avvio**: se compare «impossibile aprire perché proviene da uno sviluppatore
-> non identificato», fai tasto destro sul file → *Apri* → *Apri*. Succede solo la prima volta.
+### Mac: lo sblocco al primo avvio
+
+Al primo doppio clic macOS mostra **«"avvia.command" non è stato aperto — Apple non ha potuto
+verificare che sia privo di malware»**. Non è un problema del file: macOS blocca per principio
+ogni script scaricato da internet, qualunque sia il suo contenuto.
+
+Premi **Fine** (*non* «Sposta nel cestino»), poi:
+
+1. **Impostazioni di Sistema** → **Privacy e sicurezza**
+2. Scorri in fondo, sezione **Sicurezza**
+3. Alla riga «*"avvia.command" è stato bloccato…*» premi **Apri comunque**
+4. Inserisci la password del Mac
+5. Torna alla cartella, doppio clic sul file, conferma **Apri**
+
+Da qui in avanti il doppio clic funziona senza chiedere più nulla.
+
+> Su macOS 15 (Sequoia) e successivi il vecchio trucco «tasto destro → Apri» **non funziona più**:
+> Apple l'ha rimosso. Serve il passaggio dalle Impostazioni di Sistema descritto sopra.
+
+**In alternativa**, una sola riga nel Terminale toglie la quarantena all'intera cartella ed evita
+del tutto il blocco (sostituisci il percorso con quello della tua cartella):
+
+```bash
+xattr -dr com.apple.quarantine ~/Downloads/portfolio-monitor
+```
+
+**Oppure**, se scarichi il progetto con `git clone` invece che come ZIP, il problema non si presenta:
+i file clonati non vengono marcati come «scaricati da internet».
 
 ## Avvio da terminale
 
