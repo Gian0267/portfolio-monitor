@@ -36,12 +36,32 @@ differiti o incompleti e non sostituiscono la rendicontazione dell'intermediario
 
 ---
 
-## Avvio rapido
+## Avvio rapido — senza terminale
 
-Serve **Node.js 20 o superiore** ([nodejs.org](https://nodejs.org)).
+Serve **Node.js 20 o superiore**: scaricalo da [nodejs.org](https://nodejs.org/it/download),
+versione **LTS**, e installalo come un qualsiasi programma. Si fa una volta sola.
+
+Poi:
+
+1. Su [github.com/Gian0267/portfolio-monitor](https://github.com/Gian0267/portfolio-monitor)
+   premi il bottone verde **Code → Download ZIP**.
+2. Scompatta lo ZIP (doppio clic su Mac, tasto destro → *Estrai tutto* su Windows).
+3. Apri la cartella e fai **doppio clic** su:
+   - **`avvia.command`** se sei su Mac
+   - **`avvia.bat`** se sei su Windows
+
+Si apre una finestra nera: è normale, è l'app che gira. Al primo avvio installa da sola
+quello che serve (qualche minuto), poi il browser si apre su **http://localhost:5173**.
+
+Dalla seconda volta in poi è solo doppio clic e via. Per spegnere l'app, chiudi quella finestra.
+
+> **Mac, primo avvio**: se compare «impossibile aprire perché proviene da uno sviluppatore
+> non identificato», fai tasto destro sul file → *Apri* → *Apri*. Succede solo la prima volta.
+
+## Avvio da terminale
 
 ```bash
-git clone <url-del-repository>
+git clone https://github.com/Gian0267/portfolio-monitor.git
 cd portfolio-monitor
 
 npm install                 # installa backend e frontend
